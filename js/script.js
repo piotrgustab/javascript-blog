@@ -1,4 +1,50 @@
 use strict';
+
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles';
+
+  const optArticleSelector = '.post-tags .list',
+  
+
+function generateTitleLinks(){
+  /* remove contents of titleList */
+
+  const titleList = document.querySelectorAll(optTitleListSelector).innerHTML = '';
+
+
+  /* find all the articles and save them to variable: articles */
+ const articles = document.optArticleSelector;
+ 
+ 
+ 
+
+  let html = '';
+
+  for(let article of articles){
+    /* get the article id */
+    const articleId = Id;
+
+    /* find the title element */
+    /* ... */
+
+    /* get the title from the title element */
+    /* ... */
+
+    /* create HTML of the link */
+    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    console.log(linkHTML);
+
+    linkHTML.insertAdjacentHTML(beforebegin, linkHTML);
+    html = html + linkHTML;
+  }
+
+  titleList.innerHTML = html;
+}
+
+generateTitleLinks();
+
+
 const titleClickHandler = function(event){
     event.preventDefault();
 
@@ -23,7 +69,7 @@ const titleClickHandler = function(event){
     const targetArticle = document.querySelector(articleSelector);
     targetArticle.classList.add('active');
   }
-  
+   console.log(links);
   const links = document.querySelectorAll('.titles a');
   
   for(let link of links){
