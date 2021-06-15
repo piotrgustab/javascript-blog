@@ -75,7 +75,14 @@ const titleClickHandler = function(event){
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
   }
+
+
+  const optTagsListSelector = .tags.list 
+
   function generateTags(){
+
+    /* [NEW] create a new variable allTags with an empty object */
+    let allTags = {};
       /* find all articles */
       const articles = document.querySelectorAll('article');
     
@@ -103,12 +110,37 @@ const titleClickHandler = function(event){
         /* add generated code to html variable */
         html = html + ' ' + LinkHTML
 
+        /* [NEW] check if this link is NOT already in allTags */
+        if(!allTags[tag]) {
+        /* [NEW] add tag to allTags object */
+        allTags[tag] = 1;
+        } else {
+        allTags[tag]++;
+}
+  }
       /* END LOOP: for each tag */
     }
       /* insert HTML of all the links into the tags wrapper */
       TagWrapper.innerHTML = html;
     /* END LOOP: for every article: */
     }
+    /* find list of tags in right column */
+  const tagList = document.querySelector('.tags');
+
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams)3
+ /* [NEW] create variable for all links HTML code */
+let allTagsHTML = '';
+
+/* [NEW] START LOOP: for each tag in allTags: */
+for(let tag in allTags){
+  /* [NEW] generate code of a link and add it to allTagsHTML */
+  allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+}
+/* [NEW] END LOOP: for each tag in allTags: */
+
+/*[NEW] add HTML from allTagsHTML to tagList */
+tagList.innerHTML = allTagsHTML;
   }
   
   generateTags();
@@ -187,3 +219,40 @@ const titleClickHandler = function(event){
         }
     }
   }
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles';
+
+  const opts = {
+    articleSelector: '.post',
+    titleSelector: '.post-title',
+    titleListSelector: '.titles'
+  };
+
+
+  const opts = {
+    tagSizes: {
+      count: 5,
+      classPrefix: 'tag-size-',
+    },
+  };
+  
+  const select = {
+    all: {
+      articles: '.post',
+      linksTo: {
+        tags: 'a[href^="#tag-"]',
+        authors: 'a[href^="#author-"]',
+      },
+    },
+    article: {
+      tags: '.post-tags .list',
+      author: '.post-author',
+    },
+    listOf: {
+      titles: '.titles',
+      tags: '.tags.list',
+      authors: '.authors.list',
+    },
+  };
+  
